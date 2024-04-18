@@ -75,39 +75,36 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("currentQuestionIndex", current_Index);
-        outState.putInt("quizScore", quiz_Score);
+    protected void onSaveInstanceState(Bundle State) {
+        super.onSaveInstanceState(State);
+        State.putInt("Index", current_Index);
+        State.putInt("quiz Score", quiz_Score);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Any operations to be done when the activity is resumed
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Any operations to be done when the activity is paused
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Any cleanup operations to be done when the activity is destroyed
     }
 
-    private void displayQuestion(int index) {
-        TextView.setText(questions[index]);
-        Button1.setText(options_Select[index][0]);
-        Button2.setText(options_Select[index][1]);
-        Button3.setText(options_Select[index][2]);
+    private void displayQuestion(int position) {
+        TextView.setText(questions[position]);
+        Button1.setText(options_Select[position][0]);
+        Button2.setText(options_Select[position][1]);
+        Button3.setText(options_Select[position][2]);
     }
 
-    private void checkAnswer(String selectedOption) {
-        if (selectedOption.equals(correctAnswers[current_Index])) {
+    private void checkAnswer(String Option) {
+        if (Option.equals(correctAnswers[current_Index])) {
             Toast.makeText(this, "Correct Answer", Toast.LENGTH_LONG).show();
             quiz_Score++;
         } else {
@@ -118,9 +115,9 @@ public class QuizActivity extends AppCompatActivity {
         if (current_Index < questions.length) {
             displayQuestion(current_Index);
         } else {
-            Toast.makeText(this, "Quiz Completed! Score: " + quiz_Score, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Quiz Completed and finish... Score: " + quiz_Score, Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("quizScore", quiz_Score);
+            editor.putInt("quiz Score : ", quiz_Score);
             editor.apply();
             finish();
         }

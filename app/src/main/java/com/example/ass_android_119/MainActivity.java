@@ -18,11 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize buttons
         explorebtn = findViewById(R.id.explorebtn);
         quiz_btn = findViewById(R.id.quizbtn);
 
-        // Set onClickListener for Explore Button
         explorebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Set onClickListener for Quiz Button
         quiz_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

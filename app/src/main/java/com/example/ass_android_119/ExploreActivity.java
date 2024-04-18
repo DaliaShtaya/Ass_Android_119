@@ -17,10 +17,8 @@ public class ExploreActivity extends AppCompatActivity {
     private ListView eleme_list;
     private TextView detailTextView;
 
-    // Sample array of elements (replace with your actual data)
     private String[] element = {"Hydrogen", "Helium", "Lithium", "Beryllium", "Boron"};
 
-    // Sample array of descriptions (replace with your actual data)
     private String[] descriptions = {
             "Hydrogen is the simplest and most abundant element in the universe. It's also the lightest element, both in weight and in its atomic structure. In its pure form, hydrogen is a colorless, odorless, and tasteless gas. Each hydrogen atom has only one proton in its nucleus, and it typically has one electron orbiting around the nucleus. Hydrogen is essential for life and is found in many compounds like water (H2O) and organic molecules. It's also used in various industries, including fuel production and the manufacturing of chemicals like ammonia. Overall, hydrogen plays a fundamental role in the " +
                     "functioning of our universe and in various aspects of our daily lives.",
@@ -41,22 +39,17 @@ public class ExploreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
-        // Initialize views
         eleme_list = findViewById(R.id.listview);
         detailTextView = findViewById(R.id.element_description_text_view);
 
-        // Create ArrayAdapter to populate ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, element);
 
-        // Set adapter to ListView
         eleme_list.setAdapter(adapter);
 
-        // Set item click listener for ListView
         eleme_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parents, View v, int position_item, long id) {
-                // Display description of the selected element in TextView
                 detailTextView.setText(descriptions[position_item]);
             }
         });

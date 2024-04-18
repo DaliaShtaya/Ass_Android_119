@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Welcome Message -->
     <TextView
         android:id="@+id/welcome_message"
         android:layout_width="wrap_content"
@@ -17,7 +16,6 @@ This application was made to help students with the elements of the periodic tab
         android:gravity="center"
         />
 
-    <!-- Navigation Buttons -->
     <Button
         android:id="@+id/explorebtn"
         android:layout_width="wrap_content"
@@ -36,6 +34,5 @@ This application was made to help students with the elements of the periodic tab
         android:layout_marginTop="17dp"
         android:layout_centerHorizontal="true"/>
 
-    <!-- Add more buttons for other navigation options if needed -->
 
 </RelativeLayout>

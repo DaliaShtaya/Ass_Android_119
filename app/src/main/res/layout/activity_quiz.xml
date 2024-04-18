@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".QuizActivity">
 
-    <!-- Question TextView -->
     <TextView
         android:id="@+id/textview"
         android:layout_width="wrap_content"
@@ -14,7 +13,6 @@
         android:textSize="17sp"
         android:layout_margin="17dp"/>
 
-    <!-- Option 1 Button -->
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
@@ -24,7 +22,6 @@
         android:layout_marginTop="17dp"
         android:layout_marginStart="17dp"/>
 
-    <!-- Option 2 Button -->
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -34,7 +31,6 @@
         android:layout_marginTop="17dp"
         android:layout_marginStart="17dp"/>
 
-    <!-- Option 3 Button -->
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
