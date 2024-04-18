@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Welcome Message -->
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Chemistry Learning App!
+This application was made to help students with the elements of the periodic table and to give them a test. Good luck!"
+        android:textSize="22sp"
+
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        />
+
+    <!-- Navigation Buttons -->
+    <Button
+        android:id="@+id/explorebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore Periodic Table"
+        android:layout_below="@id/welcome_message"
+        android:layout_marginTop="17dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/quizbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take a Quiz"
+        android:layout_below="@id/explorebtn"
+        android:layout_marginTop="17dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Add more buttons for other navigation options if needed -->
+
+</RelativeLayout>
