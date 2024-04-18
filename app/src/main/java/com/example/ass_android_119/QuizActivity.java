@@ -4,10 +4,9 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,22 +19,24 @@ public class QuizActivity extends AppCompatActivity {
     private Button Button2;
     private Button Button3;
 
+    private SharedPreferences sharedPreferences;
+    private int quizSco;
 
-    private String[] Exam_qu = {
+    // Sample array of questions (replace with your actual data)
+    private String[] question_Quiz = {
             "What is the chemical symbol for Hydrogen?",
             "What is the chemical symbol for Helium?",
             "What is the chemical symbol for Boron?"
     };
 
-    private String[][] option_answer = {
-            {"H", "He", "O"},
+    private String[][] options = {
+            {"H", "He", "B"},
             {"He", "N", "O"},
             {"Au", "B", "Cu"}
     };
 
-    private String[]  Answers = {"H", "He", "B"};
+    private String[] correct_Answer = {"H", "He", "B"};
 
-    // Current question index
     private int current_Index = 0;
 
     @Override
@@ -43,16 +44,20 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        TextView= findViewById(R.id.textview);
-        Button1 = findViewById(R.id.button1);
-        Button2 = findViewById(R.id.button2);
+        TextView = findViewById(R.id.textview);
+          Button1 = findViewById(R.id.button1);
+        Button2  = findViewById(R.id.button2);
         Button3 = findViewById(R.id.button3);
+
+        // SharedPreferences
+        sharedPreferences = getSharedPreferences("QuizPreferences", Context.MODE_PRIVATE);
+        quizSco = sharedPreferences.getInt("quizScore", 0);
 
         displayQuestion(current_Index);
 
         Button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 checkAnswer(Button1.getText().toString());
             }
         });
@@ -73,24 +78,31 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void displayQuestion(int index) {
-        TextView.setText(Exam_qu[index]);
-        Button1.setText(option_answer [index][0]);
-        Button2.setText(option_answer [index][1]);
-        Button3.setText(option_answer [index][2]);
+        TextView.setText(question_Quiz[index]);
+        Button1.setText(options[index][0]);
+        Button2.setText(options[index][1]);
+        Button3.setText(options[index][2]);
     }
 
     private void checkAnswer(String selectedOption) {
-        if (selectedOption.equals(Answers[current_Index])) {
-            Toast.makeText(this, "Correct Answer!", Toast.LENGTH_LONG).show();
+        if (selectedOption.equals(correct_Answer[current_Index])) {
+            Toast.makeText(this, "Correct Answer!", Toast.LENGTH_SHORT).show();
+            quizSco++; // Increment score for correct answer
         } else {
-            Toast.makeText(this, "Incorrect Answer!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Incorrect Answer!", Toast.LENGTH_SHORT).show();
         }
 
         current_Index++;
-        if (current_Index < Exam_qu.length) {
+        if (current_Index < question_Quiz.length) {
             displayQuestion(current_Index);
         } else {
-            Toast.makeText(this, "Quiz Completed and finish!!!!!", Toast.LENGTH_LONG).show();
-            finish();         }
+            // Quiz Completed
+            Toast.makeText(this, "Quiz finished Score: " + quizSco, Toast.LENGTH_SHORT).show();
+            // Save quiz score to SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("quizScore", quizSco);
+            editor.apply();
+            finish();
+        }
     }
 }
